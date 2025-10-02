@@ -1,0 +1,22 @@
+@use '@carbon/styles'; 
+@use '@carbon/styles/scss/type' as type;
+
+/* Force light and dark tokens */
+:root[data-theme="g10"] {
+  --cds-background: #ffffff;
+  --cds-text-primary: #161616;
+  --cds-layer: #f4f4f4;
+}
+
+:root[data-theme="g90"] {
+  --cds-background: #161616;
+  --cds-text-primary: #f4f4f4;
+  --cds-layer: #262626;
+}
+
+body {
+  margin: 0;
+  background: var(--cds-background);
+  color: var(--cds-text-primary);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+}
