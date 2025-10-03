@@ -24,7 +24,7 @@ function useIsMobile() {
   return isMobile;
 }
 
-function NavItem({ to, isCurrent, children }) {
+function NavItem({ to, isCurrent, children, onClick }) {
   const navigate = useNavigate();
   return (
     <HeaderMenuItem
@@ -32,6 +32,7 @@ function NavItem({ to, isCurrent, children }) {
       isActive={isCurrent}
       onClick={(e) => {
         e.preventDefault();
+        if (onClick) onClick();
         navigate(to);
       }}
     >
@@ -55,7 +56,7 @@ export default function HeaderBar({ theme, toggleTheme }) {
 
   return (
     <>
-      <Header aria-label="RCA Risk Management">
+      <Header aria-label="Graham Newman RCA PhD Risk Management">
         {isMobile && (
           <HeaderMenuButton
             aria-label="Open menu"
@@ -65,8 +66,8 @@ export default function HeaderBar({ theme, toggleTheme }) {
           />
         )}
 
-        <HeaderName href="/" prefix="RCA" onClick={goHome}>
-          Risk Management
+        <HeaderName href="/" prefix="Graham Newman PhD" onClick={goHome}>
+          risk management
         </HeaderName>
 
         {!isMobile && (
@@ -84,11 +85,59 @@ export default function HeaderBar({ theme, toggleTheme }) {
         )}
 
         <HeaderGlobalBar>
-          <HeaderGlobalAction aria-label="Toggle theme" onClick={toggleTheme}>
+          <HeaderGlobalAction
+            aria-label="Toggle theme"
+            onClick={toggleTheme}
+            tooltipAlignment="end"
+          >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </HeaderGlobalAction>
         </HeaderGlobalBar>
       </Header>
+
+      {/* Mobile SideNav */}
+      {isMobile && (
+        <SideNav
+          aria-label="Mobile navigation"
+          expanded={isNavOpen}
+          onOverlayClick={() => setIsNavOpen(false)}
+        >
+          <SideNavItems>
+            <NavItem
+              to="/"
+              isCurrent={pathname === "/"}
+              onClick={() => setIsNavOpen(false)}
+            >
+              Home
+            </NavItem>
+            <NavItem
+              to="/risks"
+              isCurrent={pathname.startsWith("/risks")}
+              onClick={() => setIsNavOpen(false)}
+            >
+              Risks
+            </NavItem>
+            <NavItem
+              to="/about"
+              isCurrent={pathname.startsWith("/about")}
+              onClick={() => setIsNavOpen(false)}
+            >
+              About
+            </NavItem>
+
+            {/* Theme toggle inside mobile menu */}
+            <HeaderGlobalAction
+              aria-label="Toggle theme"
+              onClick={() => {
+                toggleTheme();
+                setIsNavOpen(false);
+              }}
+            >
+              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+            </HeaderGlobalAction>
+          </SideNavItems>
+        </SideNav>
+      )}
     </>
   );
 }

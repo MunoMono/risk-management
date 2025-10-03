@@ -1,0 +1,28 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# build output
+/dist
+/.vite
+*.log
+
+# local env files
+.env
+.env.local
+.env.*.local
+
+# editor settings
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+
+# system files
+Thumbs.db
+
+# npm / yarn / pnpm locks (keep only one!)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

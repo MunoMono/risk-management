@@ -1,22 +1,42 @@
-@use '@carbon/styles'; 
+@use '@carbon/styles';
 @use '@carbon/styles/scss/type' as type;
 
-/* Force light and dark tokens */
-:root[data-theme="g10"] {
-  --cds-background: #ffffff;
-  --cds-text-primary: #161616;
-  --cds-layer: #f4f4f4;
-}
-
-:root[data-theme="g90"] {
-  --cds-background: #161616;
-  --cds-text-primary: #f4f4f4;
-  --cds-layer: #262626;
-}
-
-body {
+// Ensure everything respects Carbon tokens
+html,
+body,
+#root {
+  height: 100%;
   margin: 0;
-  background: var(--cds-background);
+  padding: 0;
+  background-color: var(--cds-background);
   color: var(--cds-text-primary);
   font-family: "IBM Plex Sans", system-ui, sans-serif;
+}
+
+// Markdown sections
+.cds--markdown {
+  background-color: var(--cds-background);
+  color: var(--cds-text-primary);
+  padding: 2rem;
+}
+
+// Tables & custom containers
+table,
+.cds--data-table-container {
+  background-color: var(--cds-layer);
+  color: var(--cds-text-primary);
+}
+
+// Carbon Grid
+.cds--grid,
+.cds--row,
+.cds--col {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+// Remove white strip above markdown
+.home-grid {
+  margin-top: 0 !important;
+  padding-top: 2rem;
 }

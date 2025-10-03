@@ -1,0 +1,24 @@
+.risks-page {
+  margin-top: 5rem; // push below Carbon header
+  padding: 2rem;
+  min-height: 100vh; // cover entire screen
+  background: var(--cds-background, #161616); // Carbon dark background
+  color: var(--cds-text-primary, #f4f4f4);
+
+  h2 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+mark.highlight {
+  background-color: #fff176; // yellow highlight
+  padding: 0 2px;
+  border-radius: 2px;
+}

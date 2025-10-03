@@ -1,5 +1,6 @@
-import React from "react";
-import riskData from "../assets/risk_register.json"; // ensure JSON lives in src/assets
+// src/pages/Risks.jsx
+import React, { useState } from "react";
+import riskData from "../assets/risk_register.json";
 import {
   DataTable,
   Table,
@@ -8,9 +9,17 @@ import {
   TableHeader,
   TableBody,
   TableCell,
+  TableToolbar,
+  TableToolbarContent,
+  TableToolbarSearch,
+  MultiSelect,
+  Button,
 } from "@carbon/react";
+import { DocumentPdf } from "@carbon/icons-react";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";   // ✅ use default import here
 
-// Full header set matching JSON keys
+// ---------- Table headers ----------
 const headers = [
   { key: "Risk ID", header: "Risk ID" },
   { key: "Category", header: "Category" },
@@ -26,38 +35,142 @@ const headers = [
   { key: "Stakeholders", header: "Stakeholders" },
 ];
 
+// ---------- Utility: filters ----------
+const getUniqueValues = (field) =>
+  Array.from(new Set(riskData.map((r) => r[field])));
+
+// ---------- Utility: highlight ----------
+const highlightText = (text, keyword) => {
+  if (!keyword) return text;
+  const regex = new RegExp(`(${keyword})`, "gi");
+  return text
+    .toString()
+    .split(regex)
+    .map((part, i) =>
+      regex.test(part) ? (
+        <mark key={i} style={{ backgroundColor: "#fff176", padding: "0 2px", borderRadius: "2px" }}>
+          {part}
+        </mark>
+      ) : (
+        part
+      )
+    );
+};
+
+// ---------- Main ----------
 export default function Risks() {
-  // Map JSON into rows with unique IDs
-  const rows = riskData.map((risk, i) => ({
-    id: `${risk["Risk ID"]}-${i}`,
-    ...risk,
-  }));
+  const [search, setSearch] = useState("");
+  const [filters, setFilters] = useState({
+    Category: [],
+    Likelihood: [],
+    Impact: [],
+    "Response Strategy": [],
+  });
+
+  // Apply search + filters
+  const filteredRows = riskData
+    .filter((risk) =>
+      search
+        ? Object.values(risk).join(" ").toLowerCase().includes(search.toLowerCase())
+        : true
+    )
+    .filter((risk) =>
+      Object.entries(filters).every(([field, values]) =>
+        values.length === 0 ? true : values.includes(risk[field])
+      )
+    )
+    .map((risk, i) => ({ id: `${risk["Risk ID"]}-${i}`, ...risk }));
+
+  // ---------- Export to PDF ----------
+  const exportToPDF = () => {
+    const doc = new jsPDF();
+    doc.text("Risk Register", 14, 16);
+    autoTable(doc, {
+      head: [headers.map((h) => h.header)],
+      body: filteredRows.map((row) => headers.map((h) => row[h.key] || "")),
+      startY: 20,
+      styles: { fontSize: 8 },
+    });
+    doc.save("risk_register.pdf"); // ✅ should now download
+  };
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>Risk Register</h2>
-      <DataTable rows={rows} headers={headers}>
+    <div style={{ padding: "2rem", marginTop: "2rem" }}>
+      <h2 style={{ marginBottom: "1.5rem" }}>Risk Register</h2>
+
+      <DataTable rows={filteredRows} headers={headers}>
         {({ rows, headers, getHeaderProps }) => (
-          <Table>
-            <TableHead>
-              <TableRow>
-                {headers.map((header) => (
-                  <TableHeader key={header.key} {...getHeaderProps({ header })}>
-                    {header.header}
-                  </TableHeader>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.cells.map((cell) => (
-                    <TableCell key={cell.id}>{cell.value}</TableCell>
+          <>
+            <TableToolbar>
+              <TableToolbarContent>
+                <TableToolbarSearch
+                  persistent
+                  placeholder="Search risks..."
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </TableToolbarContent>
+            </TableToolbar>
+
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "1rem",
+                margin: "1rem 0 2rem",
+              }}
+            >
+              {["Category", "Likelihood", "Impact", "Response Strategy"].map(
+                (field) => (
+                  <MultiSelect
+                    key={field}
+                    id={`multiselect-${field}`}
+                    titleText={field}
+                    items={getUniqueValues(field)}
+                    label={`Filter by ${field}`}
+                    selectionFeedback="top"
+                    onChange={({ selectedItems }) =>
+                      setFilters((prev) => ({
+                        ...prev,
+                        [field]: selectedItems,
+                      }))
+                    }
+                    style={{ minWidth: "200px" }}
+                  />
+                )
+              )}
+            </div>
+
+            {/* Main table */}
+            <Table>
+              <TableHead>
+                <TableRow>
+                  {headers.map((header) => (
+                    <TableHeader key={header.key} {...getHeaderProps({ header })}>
+                      {header.header}
+                    </TableHeader>
                   ))}
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow key={row.id}>
+                    {row.cells.map((cell) => (
+                      <TableCell key={cell.id}>
+                        {highlightText(cell.value, search)}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+
+            {/* Download button */}
+            <div style={{ marginTop: "2rem", textAlign: "right" }}>
+              <Button kind="tertiary" renderIcon={DocumentPdf} onClick={exportToPDF}>
+                Download PDF
+              </Button>
+            </div>
+          </>
         )}
       </DataTable>
     </div>
