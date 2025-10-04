@@ -6,7 +6,7 @@ The **risk heat map** visualizes likelihood vs. impact.
 - **Impact**: the magnitude of the consequence.
 
 Multiply *likelihood × impact* to determine the **risk score**.  
-Use the color grid on the right to interpret the results.
+Use the colour grid on the right to interpret the results.
 
 | Likelihood | Impact | Risk Level |
 |-------------|---------|-------------|
