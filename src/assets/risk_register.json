@@ -8,10 +8,10 @@
     "Heat Map Cell": "B1",
     "Response Strategy": "Avoid",
     "Recommended Action": "Ensure alignment with novel research questions and KPIs",
-    "Owner": "PhD Candidate & Supervisor",
+    "Owner": "PhD researcher and supervisor",
     "Early Warning Triggers": "Negative upgrade feedback",
     "Monitoring Frequency": "Upgrade viva review",
-    "Stakeholders": "Supervisors, Examiners"
+    "Stakeholders": "supervisors, examiners"
   },
   {
     "Risk ID": "ACD-02",
@@ -22,10 +22,10 @@
     "Heat Map Cell": "B1",
     "Response Strategy": "Mitigate",
     "Recommended Action": "Set internal deadlines and writing sprints; track progress monthly",
-    "Owner": "PhD Candidate",
+    "Owner": "PhD researcher",
     "Early Warning Triggers": "Missed draft milestones",
     "Monitoring Frequency": "Monthly",
-    "Stakeholders": "Candidate, Supervisors"
+    "Stakeholders": "researcher, supervisors"
   },
   {
     "Risk ID": "ACD-03",
@@ -36,10 +36,10 @@
     "Heat Map Cell": "B1",
     "Response Strategy": "Mitigate",
     "Recommended Action": "Prioritise open-source deliverables in project plan",
-    "Owner": "PhD Candidate",
+    "Owner": "PhD researcher",
     "Early Warning Triggers": "Missed repository deposits",
     "Monitoring Frequency": "Per milestone",
-    "Stakeholders": "Candidate, Digital Humanities community"
+    "Stakeholders": "researcher, digital Humanities community"
   },
   {
     "Risk ID": "ACD-04",
@@ -50,10 +50,10 @@
     "Heat Map Cell": "C2",
     "Response Strategy": "Mitigate",
     "Recommended Action": "Define publication milestones early, align to REF, secure collaborations",
-    "Owner": "PhD Candidate & Supervisor",
+    "Owner": "PhD researcher and supervisor",
     "Early Warning Triggers": "Missed submissions, low collab",
     "Monitoring Frequency": "Quarterly",
-    "Stakeholders": "Candidate, Supervisors, Institution"
+    "Stakeholders": "researcher, supervisors, institution"
   },
   {
     "Risk ID": "ACD-05",
@@ -64,24 +64,24 @@
     "Heat Map Cell": "B2",
     "Response Strategy": "Accept",
     "Recommended Action": "Document limitations, pivot to historiographic insights",
-    "Owner": "PhD Candidate",
+    "Owner": "PhD researcher",
     "Early Warning Triggers": "Poor evaluation results",
     "Monitoring Frequency": "At model eval checkpoints",
-    "Stakeholders": "Candidate, Technical Lead"
+    "Stakeholders": "researcher, technical lead"
   },
   {
     "Risk ID": "ACD-06",
     "Category": "Academic",
-    "Description": "Supervisor unavailability (illness, retirement, or workload conflicts)",
+    "Description": "supervisor unavailability (illness, retirement, or workload conflicts)",
     "Likelihood": "Medium",
     "Impact": "High",
     "Heat Map Cell": "B1",
     "Response Strategy": "Mitigate",
     "Recommended Action": "Agree contingency supervisory cover in advance; maintain proactive communication",
-    "Owner": "Supervisors, Candidate",
+    "Owner": "supervisors, researcher",
     "Early Warning Triggers": "Missed supervisions, unresponsive feedback",
     "Monitoring Frequency": "Quarterly",
-    "Stakeholders": "Candidate, Supervisors, Institution"
+    "Stakeholders": "researcher, supervisors, institution"
   },
   {
     "Risk ID": "ETH-01",
@@ -95,7 +95,7 @@
     "Owner": "PI / Ethics Lead",
     "Early Warning Triggers": "Stakeholder complaints",
     "Monitoring Frequency": "At milestones",
-    "Stakeholders": "Ethics Committee, Stakeholder groups"
+    "Stakeholders": "ethics committee, Stakeholder groups"
   },
   {
     "Risk ID": "ETH-02",
@@ -109,7 +109,7 @@
     "Owner": "Archive Partner / Ethics",
     "Early Warning Triggers": "Takedown requests",
     "Monitoring Frequency": "Pre-release review",
-    "Stakeholders": "Archive Partners, Institutional Review Board"
+    "Stakeholders": "archive partners, institutional review board"
   },
   {
     "Risk ID": "ETH-03",
@@ -120,10 +120,10 @@
     "Heat Map Cell": "B1",
     "Response Strategy": "Avoid",
     "Recommended Action": "Submit early with contingency; maintain open communication with Ethics Committee",
-    "Owner": "Candidate & PI",
+    "Owner": "researcher and PI",
     "Early Warning Triggers": "Application returned for revision",
     "Monitoring Frequency": "Pre-milestone",
-    "Stakeholders": "Candidate, Supervisors, RCA Ethics"
+    "Stakeholders": "researcher, supervisors, RCA ethics"
   },
   {
     "Risk ID": "ETH-04",
@@ -134,10 +134,10 @@
     "Heat Map Cell": "C1",
     "Response Strategy": "Mitigate",
     "Recommended Action": "Pre-consult with Ethics Lead; peer review application before submission; adjust design",
-    "Owner": "Candidate & Supervisor",
+    "Owner": "researcher and supervisor",
     "Early Warning Triggers": "Negative feedback from pre-check or committee",
     "Monitoring Frequency": "Per submission",
-    "Stakeholders": "Candidate, Supervisors, RCA Ethics Lead"
+    "Stakeholders": "researcher, supervisors, RCA ethics lead"
   },
   {
     "Risk ID": "ETH-05",
@@ -148,10 +148,10 @@
     "Heat Map Cell": "B2",
     "Response Strategy": "Mitigate",
     "Recommended Action": "Plan multiple engagement formats; incentivise participation; capture asynchronous feedback",
-    "Owner": "Candidate, Ethics Lead",
+    "Owner": "researcher, Ethics Lead",
     "Early Warning Triggers": "Low workshop attendance, lack of feedback",
     "Monitoring Frequency": "At milestones",
-    "Stakeholders": "Stakeholder groups, RCA Ethics Committee"
+    "Stakeholders": "Stakeholder groups, RCA ethics committee"
   },
   {
     "Risk ID": "PRC-01",
@@ -165,7 +165,7 @@
     "Owner": "Technical Lead",
     "Early Warning Triggers": "Frequent hotfixes, migration errors",
     "Monitoring Frequency": "Bi-weekly dev checks",
-    "Stakeholders": "Technical team, DevOps"
+    "Stakeholders": "technical team, devops"
   },
   {
     "Risk ID": "PRC-02",
@@ -179,7 +179,7 @@
     "Owner": "DevOps Lead",
     "Early Warning Triggers": "Upload errors, user complaints",
     "Monitoring Frequency": "Continuous monitoring",
-    "Stakeholders": "Technical team, End Users"
+    "Stakeholders": "technical team, end users"
   },
   {
     "Risk ID": "PRC-03",
@@ -190,10 +190,10 @@
     "Heat Map Cell": "C2",
     "Response Strategy": "Mitigate",
     "Recommended Action": "Engage RCA IT, Legal, and Compliance early; clarify data protection and rights; plan fallback hosting",
-    "Owner": "Technical Lead & PI",
+    "Owner": "Technical Lead and PI",
     "Early Warning Triggers": "Delays in legal approval; access blocked",
     "Monitoring Frequency": "Per milestone",
-    "Stakeholders": "Candidate, RCA IT, RCA Legal, V&A East"
+    "Stakeholders": "researcher, RCA IT, RCA legal"
   },
   {
     "Risk ID": "PRC-04",
@@ -207,7 +207,7 @@
     "Owner": "Technical Lead, PI",
     "Early Warning Triggers": "Hosting service changes, repo warnings",
     "Monitoring Frequency": "Annual",
-    "Stakeholders": "RCA IT, Digital Humanities Community"
+    "Stakeholders": "RCA IT, digital humanities community"
   },
   {
     "Risk ID": "PRC-05",
@@ -221,21 +221,21 @@
     "Owner": "Technical Lead",
     "Early Warning Triggers": "Security advisories, version deprecations",
     "Monitoring Frequency": "Per milestone",
-    "Stakeholders": "Technical team, Candidate"
+    "Stakeholders": "technical team, researcher"
   },
   {
     "Risk ID": "PRC-06",
     "Category": "Practice",
-    "Description": "Institutional dependencies \u2014 RCA/V&A policy changes affect access or support",
+    "Description": "Institutional dependencies \u2014 RCA/VandA policy changes affect access or support",
     "Likelihood": "Low",
     "Impact": "High",
     "Heat Map Cell": "C1",
     "Response Strategy": "Transfer",
     "Recommended Action": "Formalise agreements in writing; develop alternative partner relationships",
-    "Owner": "PI, Supervisors",
+    "Owner": "PI, supervisors",
     "Early Warning Triggers": "Leadership turnover, access delays",
     "Monitoring Frequency": "Annual",
-    "Stakeholders": "RCA, V&A East, Archive Partners"
+    "Stakeholders": "RCA, archive partners"
   },
   {
     "Risk ID": "WLB-01",
@@ -246,10 +246,10 @@
     "Heat Map Cell": "B2",
     "Response Strategy": "Mitigate",
     "Recommended Action": "Weekly workload balance check-ins",
-    "Owner": "PhD Candidate",
+    "Owner": "PhD researcher",
     "Early Warning Triggers": "Stress indicators",
     "Monitoring Frequency": "Weekly",
-    "Stakeholders": "Candidate, Supervisors"
+    "Stakeholders": "researcher, supervisors"
   },
   {
     "Risk ID": "WLB-02",
@@ -260,10 +260,10 @@
     "Heat Map Cell": "B2",
     "Response Strategy": "Accept",
     "Recommended Action": "Build pacing into plan, supervisor check-ins, wellbeing time",
-    "Owner": "PhD Candidate",
+    "Owner": "PhD researcher",
     "Early Warning Triggers": "Declining productivity",
     "Monitoring Frequency": "Monthly",
-    "Stakeholders": "Candidate"
+    "Stakeholders": "researcher"
   },
   {
     "Risk ID": "WLB-03",
@@ -274,10 +274,10 @@
     "Heat Map Cell": "A2",
     "Response Strategy": "Mitigate",
     "Recommended Action": "Peer groups, co-design workshops, collaborative sessions",
-    "Owner": "PhD Candidate",
+    "Owner": "PhD researcher",
     "Early Warning Triggers": "Reduced participation",
     "Monitoring Frequency": "Monthly",
-    "Stakeholders": "Candidate, Peer Groups"
+    "Stakeholders": "researcher, peer groups"
   },
   {
     "Risk ID": "WLB-04",
@@ -288,9 +288,9 @@
     "Heat Map Cell": "C1",
     "Response Strategy": "Accept",
     "Recommended Action": "Build flexibility into timeline; communicate with supervisors; access bereavement support services",
-    "Owner": "Candidate",
+    "Owner": "researcher",
     "Early Warning Triggers": "Family illness, decline",
     "Monitoring Frequency": "As needed",
-    "Stakeholders": "Candidate, Supervisors, Family"
+    "Stakeholders": "researcher, supervisors, family"
   }
 ]

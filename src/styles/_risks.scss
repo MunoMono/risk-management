@@ -22,3 +22,29 @@ mark.highlight {
   padding: 0 2px;
   border-radius: 2px;
 }
+.heatmap-page {
+  padding: 2rem;
+
+  .markdown-col {
+    padding-right: 2rem;
+  }
+
+  .heatmap-image {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+}
+.heatmap-grid {
+  .image-col {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .heatmap-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 1rem;
+  }
+}

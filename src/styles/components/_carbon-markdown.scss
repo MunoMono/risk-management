@@ -164,3 +164,11 @@
     h3 { @include type.type-style('heading-02'); }
   }
 }
+/* Remove default top margin from first heading */
+.carbon-markdown.no-top-margin {
+  > h1:first-child,
+  > h2:first-child,
+  > h3:first-child {
+    margin-top: 0;
+  }
+}

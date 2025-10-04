@@ -1,4 +1,3 @@
-// src/components/HeaderBar.jsx
 import React, { useEffect, useState } from "react";
 import {
   Header,
@@ -12,18 +11,20 @@ import {
   SideNavItems,
 } from "@carbon/react";
 import { Moon, Sun } from "@carbon/icons-react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
+// Hook: detect small screen
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 672);
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 672);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    const handleResize = () => setIsMobile(window.innerWidth < 672);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
   return isMobile;
 }
 
+// Navigation item helper
 function NavItem({ to, isCurrent, children, onClick }) {
   const navigate = useNavigate();
   return (
@@ -78,8 +79,8 @@ export default function HeaderBar({ theme, toggleTheme }) {
             <NavItem to="/risks" isCurrent={pathname.startsWith("/risks")}>
               Risks
             </NavItem>
-            <NavItem to="/about" isCurrent={pathname.startsWith("/about")}>
-              About
+            <NavItem to="/heatmap" isCurrent={pathname.startsWith("/heatmap")}>
+              Heat map
             </NavItem>
           </HeaderNavigation>
         )}
@@ -103,11 +104,7 @@ export default function HeaderBar({ theme, toggleTheme }) {
           onOverlayClick={() => setIsNavOpen(false)}
         >
           <SideNavItems>
-            <NavItem
-              to="/"
-              isCurrent={pathname === "/"}
-              onClick={() => setIsNavOpen(false)}
-            >
+            <NavItem to="/" isCurrent={pathname === "/"} onClick={() => setIsNavOpen(false)}>
               Home
             </NavItem>
             <NavItem
@@ -118,11 +115,11 @@ export default function HeaderBar({ theme, toggleTheme }) {
               Risks
             </NavItem>
             <NavItem
-              to="/about"
-              isCurrent={pathname.startsWith("/about")}
+              to="/heatmap"
+              isCurrent={pathname.startsWith("/heatmap")}
               onClick={() => setIsNavOpen(false)}
             >
-              About
+              Heat map
             </NavItem>
 
             {/* Theme toggle inside mobile menu */}

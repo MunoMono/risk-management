@@ -15,9 +15,9 @@ import {
   MultiSelect,
   Button,
 } from "@carbon/react";
-import { DocumentPdf } from "@carbon/icons-react";
+import { DocumentPdf, DocumentExport } from "@carbon/icons-react"; // ✅ fixed import
 import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";   // ✅ use default import here
+import autoTable from "jspdf-autotable";
 
 // ---------- Table headers ----------
 const headers = [
@@ -48,7 +48,14 @@ const highlightText = (text, keyword) => {
     .split(regex)
     .map((part, i) =>
       regex.test(part) ? (
-        <mark key={i} style={{ backgroundColor: "#fff176", padding: "0 2px", borderRadius: "2px" }}>
+        <mark
+          key={i}
+          style={{
+            backgroundColor: "#fff176",
+            padding: "0 2px",
+            borderRadius: "2px",
+          }}
+        >
           {part}
         </mark>
       ) : (
@@ -71,7 +78,10 @@ export default function Risks() {
   const filteredRows = riskData
     .filter((risk) =>
       search
-        ? Object.values(risk).join(" ").toLowerCase().includes(search.toLowerCase())
+        ? Object.values(risk)
+            .join(" ")
+            .toLowerCase()
+            .includes(search.toLowerCase())
         : true
     )
     .filter((risk) =>
@@ -91,7 +101,27 @@ export default function Risks() {
       startY: 20,
       styles: { fontSize: 8 },
     });
-    doc.save("risk_register.pdf"); // ✅ should now download
+    doc.save("risk_register.pdf");
+  };
+
+  // ---------- Export to CSV ----------
+  const exportToCSV = () => {
+    const csvHeaders = headers.map((h) => `"${h.header}"`).join(",");
+    const csvRows = filteredRows.map((row) =>
+      headers
+        .map((h) => `"${(row[h.key] || "").toString().replace(/"/g, '""')}"`)
+        .join(",")
+    );
+    const csvContent = [csvHeaders, ...csvRows].join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "risk_register.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -111,6 +141,7 @@ export default function Risks() {
               </TableToolbarContent>
             </TableToolbar>
 
+            {/* Filter controls */}
             <div
               style={{
                 display: "flex",
@@ -145,7 +176,10 @@ export default function Risks() {
               <TableHead>
                 <TableRow>
                   {headers.map((header) => (
-                    <TableHeader key={header.key} {...getHeaderProps({ header })}>
+                    <TableHeader
+                      key={header.key}
+                      {...getHeaderProps({ header })}
+                    >
                       {header.header}
                     </TableHeader>
                   ))}
@@ -164,9 +198,28 @@ export default function Risks() {
               </TableBody>
             </Table>
 
-            {/* Download button */}
-            <div style={{ marginTop: "2rem", textAlign: "right" }}>
-              <Button kind="tertiary" renderIcon={DocumentPdf} onClick={exportToPDF}>
+            {/* Download buttons */}
+            <div
+              style={{
+                marginTop: "2rem",
+                textAlign: "right",
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: "1rem",
+              }}
+            >
+              <Button
+                kind="tertiary"
+                renderIcon={DocumentExport}
+                onClick={exportToCSV}
+              >
+                Download CSV
+              </Button>
+              <Button
+                kind="tertiary"
+                renderIcon={DocumentPdf}
+                onClick={exportToPDF}
+              >
                 Download PDF
               </Button>
             </div>
